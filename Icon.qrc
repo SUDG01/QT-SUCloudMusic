@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/icon"/>
+    <qresource prefix="/">
+        <file>../../icon/4SUmusic/codicon_debug-start.png</file>
+        <file>../../icon/4SUmusic/mi_next.png</file>
+        <file>../../icon/4SUmusic/mi_previous.png</file>
+        <file>../../icon/4SUmusic/ic_baseline-pause.png</file>
+        <file>../../icon/4SUmusic/arcticons_wynk-music.png</file>
+        <file>../../icon/4SUmusic/mdi_about.png</file>
+        <file>../../icon/4SUmusic/default_cover.png</file>
+    </qresource>
+</RCC>
