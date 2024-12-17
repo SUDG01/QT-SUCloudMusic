@@ -65,7 +65,7 @@ public:
     {
         About1->setWindowTitle(QCoreApplication::translate("About1", "\345\205\263\344\272\216", nullptr));
         label->setText(QCoreApplication::translate("About1", "\345\205\263\344\272\216\346\210\221\344\273\254", nullptr));
-        label_2->setText(QCoreApplication::translate("About1", "Version: SUCloudMusic Beta 0.1.1(fixed)", nullptr));
+        label_2->setText(QCoreApplication::translate("About1", "Version: SUCloudMusic Beta 0.1.7(fixed)", nullptr));
         label_3->setText(QCoreApplication::translate("About1", "Dev: SUX1NG", nullptr));
         label_4->setText(QCoreApplication::translate("About1", "Supporter: DNF1sreal,Chatgpt", nullptr));
     } // retranslateUi

@@ -751,6 +751,8 @@ E:/QT-SUcloudmusic/SUmusic/SUmusic.h
  mdp:E:/QTcreater/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
  mdp:E:/QTcreater/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:E:/QTcreater/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+E:/QT-SUcloudmusic/SUmusic/MessgeBox.cpp
+ uic:ui_MessgeBox.h
 E:/QT-SUcloudmusic/SUmusic/about1.h
  mmc:Q_OBJECT
  mdp:E:/QT-SUcloudmusic/SUmusic/about1.h
@@ -1112,8 +1114,6 @@ E:/QT-SUcloudmusic/SUmusic/about1.h
  mdp:E:/QTcreater/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
  mdp:E:/QTcreater/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:E:/QTcreater/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
-E:/QT-SUcloudmusic/SUmusic/MessgeBox.cpp
- uic:ui_MessgeBox.h
 E:/QT-SUcloudmusic/SUmusic/SUmusic.cpp
  uic:./ui_SUmusic.h
 E:/QT-SUcloudmusic/SUmusic/main.cpp

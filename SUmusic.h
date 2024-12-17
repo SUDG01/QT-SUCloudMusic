@@ -53,9 +53,11 @@ private slots:
 
     void on_music_previews_clicked();
 
-    void on_pushButton_clicked();
-
     void on_addMusic_clicked();
+
+    void on_open_file_clicked();
+
+    void on_del_music_clicked();
 
 private:
     Ui::SUmusic *ui;

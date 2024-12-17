@@ -82,7 +82,7 @@ SUmusic::SUmusic(QWidget *parent)
 
 
     auto path1 = "Music";
-    QDirIterator it(path1,{"*.mp3","*.wav","*.ogg"});
+    QDirIterator it(path1,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
     while(it.hasNext()){
         auto info = it.nextFileInfo();
         QString fullName = info.fileName();
@@ -109,7 +109,7 @@ void SUmusic::on_reload_clicked()
     m_Listmodel->clear();
     m_itemList.clear();
     auto path = "Music";
-    QDirIterator it(path,{"*.mp3","*.wav","*.ogg"});
+    QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
     while(it.hasNext()){
         auto info = it.nextFileInfo();
         QString fullName = info.fileName();
@@ -275,9 +275,9 @@ void SUmusic::updateCoverArt()
     }
 }
 
-void SUmusic::on_pushButton_clicked()
+void SUmusic::on_open_file_clicked()
 {
-    QString folderPath = "Music"; // 替换为你要打开的文件夹路径
+    QString folderPath = "Music";
     QDesktopServices::openUrl(QUrl::fromLocalFile(folderPath));
 }
 
@@ -294,9 +294,8 @@ void SUmusic::on_addMusic_clicked()
     if (!process->waitForStarted()) {
         delete process; // 释放进程对象
     } else {
-        qDebug() << "dlmusic.exe 启动成功！";
-        QMessageBox::information(this,"提示","添加成功！请等待一段时间后点击reload按钮刷新列表");
-        }
+        QMessageBox::information(this,"提示","添加成功！请点击刷新列表");
+    }
 }
 
 
@@ -307,4 +306,37 @@ void SUmusic::onTimerTimeout()
 
 
 
+
+
+void SUmusic::on_del_music_clicked()
+{
+    QModelIndexList selectIndexes = ui->Musiclist->selectionModel()->selectedIndexes();
+    auto selectedItem = selectIndexes.first();
+    auto url1 = m_Listmodel->item(selectedItem.row())->data(Qt::UserRole + 1).toUrl();
+    QString url2 = url1.toString();
+
+    if(QFile::exists(url2)){
+        QFile::remove(url2);
+        QMessageBox::information(this,"提示","音乐删除成功");
+    }
+    else{
+        QMessageBox::information(this,"错误","删除失败，请确认文件是否存在");
+    }
+    m_Listmodel->clear();
+    m_itemList.clear();
+    auto path = "Music";
+    QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
+    while(it.hasNext()){
+        auto info = it.nextFileInfo();
+        QString fullName = info.fileName();
+
+        int lastDotIndex = fullName.lastIndexOf('.');
+        QString musicName = (lastDotIndex != -1) ? fullName.left(lastDotIndex) : fullName;
+        auto item = new QStandardItem(musicName);
+        item->setData(info.canonicalFilePath());   //路径
+
+        m_Listmodel->appendRow(item);
+        m_itemList.append(item);
+    }
+}
 

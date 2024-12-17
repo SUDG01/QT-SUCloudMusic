@@ -41,7 +41,8 @@ public:
     QLabel *MuCover;
     QTextEdit *usrInput;
     QPushButton *addMusic;
-    QPushButton *pushButton;
+    QPushButton *open_file;
+    QPushButton *del_music;
 
     void setupUi(QMainWindow *SUmusic)
     {
@@ -83,7 +84,7 @@ public:
         widget->setGeometry(QRect(370, 540, 611, 80));
         music_start = new QPushButton(widget);
         music_start->setObjectName("music_start");
-        music_start->setGeometry(QRect(230, 20, 91, 51));
+        music_start->setGeometry(QRect(260, 20, 91, 51));
         music_start->setStyleSheet(QString::fromUtf8(""));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/icon/4SUmusic/codicon_debug-start.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -94,11 +95,11 @@ public:
         music_start->setAutoDefault(false);
         music_previews = new QPushButton(widget);
         music_previews->setObjectName("music_previews");
-        music_previews->setGeometry(QRect(140, 20, 61, 51));
+        music_previews->setGeometry(QRect(160, 20, 61, 51));
         music_previews->setStyleSheet(QString::fromUtf8("image: url(:/icon/4SUmusic/mi_previous.png);"));
         music_next = new QPushButton(widget);
         music_next->setObjectName("music_next");
-        music_next->setGeometry(QRect(360, 20, 61, 51));
+        music_next->setGeometry(QRect(390, 20, 61, 51));
         music_next->setStyleSheet(QString::fromUtf8("image: url(:/icon/4SUmusic/mi_next.png);"));
         all_long = new QLabel(centralwidget);
         all_long->setObjectName("all_long");
@@ -106,16 +107,19 @@ public:
         all_long->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
         reload = new QPushButton(centralwidget);
         reload->setObjectName("reload");
-        reload->setGeometry(QRect(1220, 650, 56, 20));
+        reload->setGeometry(QRect(70, 130, 81, 31));
+        QFont font1;
+        font1.setPointSize(12);
+        reload->setFont(font1);
         now_long = new QLabel(centralwidget);
         now_long->setObjectName("now_long");
         now_long->setGeometry(QRect(420, 470, 76, 12));
         volum_slide = new QSlider(centralwidget);
         volum_slide->setObjectName("volum_slide");
         volum_slide->setGeometry(QRect(1000, 570, 221, 21));
-        QFont font1;
-        font1.setStyleStrategy(QFont::PreferAntialias);
-        volum_slide->setFont(font1);
+        QFont font2;
+        font2.setStyleStrategy(QFont::PreferAntialias);
+        volum_slide->setFont(font2);
         volum_slide->setMaximum(100);
         volum_slide->setValue(50);
         volum_slide->setSliderPosition(50);
@@ -132,7 +136,7 @@ public:
         musicslider->setOrientation(Qt::Orientation::Horizontal);
         about = new QPushButton(centralwidget);
         about->setObjectName("about");
-        about->setGeometry(QRect(0, 0, 61, 21));
+        about->setGeometry(QRect(0, 0, 61, 31));
         MuCover = new QLabel(centralwidget);
         MuCover->setObjectName("MuCover");
         MuCover->setGeometry(QRect(620, 120, 300, 300));
@@ -142,10 +146,10 @@ public:
         usrInput = new QTextEdit(centralwidget);
         usrInput->setObjectName("usrInput");
         usrInput->setGeometry(QRect(380, 10, 681, 41));
-        QFont font2;
-        font2.setPointSize(10);
-        font2.setBold(true);
-        usrInput->setFont(font2);
+        QFont font3;
+        font3.setPointSize(10);
+        font3.setBold(true);
+        usrInput->setFont(font3);
         usrInput->setUndoRedoEnabled(true);
         usrInput->setLineWrapMode(QTextEdit::LineWrapMode::WidgetWidth);
         usrInput->setOverwriteMode(false);
@@ -153,16 +157,28 @@ public:
         addMusic = new QPushButton(centralwidget);
         addMusic->setObjectName("addMusic");
         addMusic->setGeometry(QRect(1070, 10, 81, 41));
-        QFont font3;
-        font3.setPointSize(10);
-        addMusic->setFont(font3);
+        QFont font4;
+        font4.setPointSize(10);
+        addMusic->setFont(font4);
         QIcon icon2(QIcon::fromTheme(QIcon::ThemeIcon::EditFind));
         addMusic->setIcon(icon2);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(60, 160, 91, 41));
-        QIcon icon3(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew));
-        pushButton->setIcon(icon3);
+        open_file = new QPushButton(centralwidget);
+        open_file->setObjectName("open_file");
+        open_file->setGeometry(QRect(60, 160, 91, 41));
+        QFont font5;
+        font5.setPointSize(11);
+        open_file->setFont(font5);
+        open_file->setStyleSheet(QString::fromUtf8(""));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/icon/4SUmusic/mdi-light_file.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        open_file->setIcon(icon3);
+        del_music = new QPushButton(centralwidget);
+        del_music->setObjectName("del_music");
+        del_music->setGeometry(QRect(180, 160, 81, 41));
+        del_music->setFont(font5);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/icon/4SUmusic/material-symbols_delete-outline-rounded.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        del_music->setIcon(icon4);
         SUmusic->setCentralWidget(centralwidget);
 
         retranslateUi(SUmusic);
@@ -177,13 +193,14 @@ public:
         music_previews->setText(QString());
         music_next->setText(QString());
         all_long->setText(QCoreApplication::translate("SUmusic", "00:00:00", nullptr));
-        reload->setText(QCoreApplication::translate("SUmusic", "Reload", nullptr));
+        reload->setText(QCoreApplication::translate("SUmusic", "\345\210\267\346\226\260\345\210\227\350\241\250", nullptr));
         now_long->setText(QCoreApplication::translate("SUmusic", "00:00:00", nullptr));
         yinliang->setText(QCoreApplication::translate("SUmusic", "\351\237\263\351\207\217", nullptr));
         about->setText(QCoreApplication::translate("SUmusic", "About", nullptr));
         MuCover->setText(QString());
         addMusic->setText(QCoreApplication::translate("SUmusic", "\346\267\273\345\212\240\351\237\263\344\271\220", nullptr));
-        pushButton->setText(QCoreApplication::translate("SUmusic", "\346\211\223\345\274\200\346\226\207\344\273\266\345\244\271", nullptr));
+        open_file->setText(QCoreApplication::translate("SUmusic", "\346\211\223\345\274\200\346\226\207\344\273\266\345\244\271", nullptr));
+        del_music->setText(QCoreApplication::translate("SUmusic", "\345\210\240\351\231\244\351\237\263\344\271\220", nullptr));
     } // retranslateUi
 
 };

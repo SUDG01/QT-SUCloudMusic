@@ -53,8 +53,9 @@ constexpr auto qt_meta_stringdata_CLASSSUmusicENDCLASS = QtMocHelpers::stringDat
     "on_volum_slide_sliderMoved",
     "on_music_next_clicked",
     "on_music_previews_clicked",
-    "on_pushButton_clicked",
-    "on_addMusic_clicked"
+    "on_addMusic_clicked",
+    "on_open_file_clicked",
+    "on_del_music_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -67,7 +68,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSUmusicENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -75,19 +76,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSUmusicENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   92,    2, 0x08,    1 /* Private */,
-       3,    0,   93,    2, 0x08,    2 /* Private */,
-       4,    1,   94,    2, 0x08,    3 /* Private */,
-       7,    0,   97,    2, 0x08,    5 /* Private */,
-       8,    1,   98,    2, 0x08,    6 /* Private */,
-      10,    1,  101,    2, 0x08,    8 /* Private */,
-      12,    1,  104,    2, 0x08,   10 /* Private */,
-      13,    0,  107,    2, 0x08,   12 /* Private */,
-      14,    1,  108,    2, 0x08,   13 /* Private */,
-      15,    0,  111,    2, 0x08,   15 /* Private */,
-      16,    0,  112,    2, 0x08,   16 /* Private */,
-      17,    0,  113,    2, 0x08,   17 /* Private */,
-      18,    0,  114,    2, 0x08,   18 /* Private */,
+       1,    0,   98,    2, 0x08,    1 /* Private */,
+       3,    0,   99,    2, 0x08,    2 /* Private */,
+       4,    1,  100,    2, 0x08,    3 /* Private */,
+       7,    0,  103,    2, 0x08,    5 /* Private */,
+       8,    1,  104,    2, 0x08,    6 /* Private */,
+      10,    1,  107,    2, 0x08,    8 /* Private */,
+      12,    1,  110,    2, 0x08,   10 /* Private */,
+      13,    0,  113,    2, 0x08,   12 /* Private */,
+      14,    1,  114,    2, 0x08,   13 /* Private */,
+      15,    0,  117,    2, 0x08,   15 /* Private */,
+      16,    0,  118,    2, 0x08,   16 /* Private */,
+      17,    0,  119,    2, 0x08,   17 /* Private */,
+      18,    0,  120,    2, 0x08,   18 /* Private */,
+      19,    0,  121,    2, 0x08,   19 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -99,6 +101,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSUmusicENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,    9,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   11,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -143,9 +146,11 @@ Q_CONSTINIT const QMetaObject SUmusic::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_music_previews_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_pushButton_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_addMusic_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_open_file_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_del_music_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -168,8 +173,9 @@ void SUmusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 8: _t->on_volum_slide_sliderMoved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 9: _t->on_music_next_clicked(); break;
         case 10: _t->on_music_previews_clicked(); break;
-        case 11: _t->on_pushButton_clicked(); break;
-        case 12: _t->on_addMusic_clicked(); break;
+        case 11: _t->on_addMusic_clicked(); break;
+        case 12: _t->on_open_file_clicked(); break;
+        case 13: _t->on_del_music_clicked(); break;
         default: ;
         }
     }
@@ -194,13 +200,13 @@ int SUmusic::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 14)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }

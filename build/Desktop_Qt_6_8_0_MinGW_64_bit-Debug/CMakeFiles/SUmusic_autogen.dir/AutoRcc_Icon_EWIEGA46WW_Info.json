@@ -10,10 +10,12 @@
 	"INPUTS" : 
 	[
 		"E:/icon/4SUmusic/mi_next.png",
+		"E:/icon/4SUmusic/material-symbols_delete-outline-rounded.png",
 		"E:/icon/4SUmusic/ic_baseline-pause.png",
 		"E:/icon/4SUmusic/default_cover.png",
 		"E:/icon/4SUmusic/arcticons_wynk-music.png",
 		"E:/icon/4SUmusic/codicon_debug-start.png",
+		"E:/icon/4SUmusic/mdi-light_file.png",
 		"E:/icon/4SUmusic/mdi_about.png",
 		"E:/icon/4SUmusic/mi_previous.png"
 	],
