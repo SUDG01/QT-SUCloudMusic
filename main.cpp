@@ -4,8 +4,10 @@
 #include <QApplication>
 #include <iostream>
 #include <filesystem>
-
+#include <QWidget>
 namespace fs = std::filesystem;
+
+
 
 int main(int argc, char *argv[])
 {

@@ -10,6 +10,9 @@
 #include <QMediaMetaData>
 #include <QImage>
 #include <QTimer>
+#include <QMouseEvent>
+#include <QApplication>
+#include <QWidget>
 
 
 QT_BEGIN_NAMESPACE
@@ -23,15 +26,23 @@ class SUmusic : public QMainWindow
     Q_OBJECT
 
 
+
 public:
     SUmusic(QWidget *parent = nullptr);
     ~SUmusic();
 
+
     void playMusicAtIndex(int index);
     void updateCoverArt();
 
+
+
+
 private slots:
+
     void onTimerTimeout();
+
+    virtual void paintEvent(QPaintEvent *event) override;
 
     void on_reload_clicked();
 
@@ -59,6 +70,18 @@ private slots:
 
     void on_del_music_clicked();
 
+    void on_closeWindow_clicked();
+
+    void on_minWindow_clicked();
+
+    void mousePressEvent(QMouseEvent *event);
+
+    void mouseMoveEvent(QMouseEvent *event);
+
+    void mouseReleaseEvent(QMouseEvent *event);
+
+
+
 private:
     Ui::SUmusic *ui;
     QStandardItemModel *m_Listmodel;
@@ -71,5 +94,9 @@ private:
     QLabel *coverLabel;
     QTimer *m_timer;
     QStringList m_fileList;
+    QLabel *titleLabel;       // 用于拖动窗口的 QLabel
+    bool isDragging;          // 是否正在拖动窗口
+    QPoint dragStartPosition; // 鼠标拖动的起始位置
+
 };
 #endif // SUMUSIC_H

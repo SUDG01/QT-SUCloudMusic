@@ -17,6 +17,16 @@
 #include <QMessageBox>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QMainWindow>
+#include <QPainter>
+#include <QStyleOption>
+#include <QMouseEvent>
+
+
+
+
+
+
 
 QString SUmusic::formatTime(qint64 timeMs)
 {
@@ -37,10 +47,18 @@ SUmusic::SUmusic(QWidget *parent)
     ,m_Listmodel(new QStandardItemModel(this))
     ,m_mediaPlayer(new QMediaPlayer(this))
     ,m_audioOutput(new QAudioOutput(this))
-    , m_timer(new QTimer(this))
+    ,m_timer(new QTimer(this))
+    ,isDragging(false)
 {
+
     ui->setupUi(this);
+
+
     ui->Musiclist->setModel(m_Listmodel);
+    setAttribute(Qt::WA_TranslucentBackground);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+
+    titleLabel = ui->headBar;
 
     m_mediaPlayer->setAudioOutput(m_audioOutput);
     connect(ui->addMusic, &QPushButton::clicked, this, &SUmusic::on_addMusic_clicked);
@@ -95,6 +113,7 @@ SUmusic::SUmusic(QWidget *parent)
         m_Listmodel->appendRow(item);
         m_itemList.append(item);
     }
+
 }
 
 SUmusic::~SUmusic()
@@ -288,6 +307,7 @@ void SUmusic::on_addMusic_clicked()
     QString exePath = currentPath + "/dlmusic.exe";
     QString text = ui->usrInput->toPlainText();
     QClipboard *clipboard = QGuiApplication::clipboard();
+    QString anti_Clipboard = clipboard->text();
     clipboard->setText(text);
     QProcess *process = new QProcess(this);
     process->start(exePath);
@@ -296,6 +316,7 @@ void SUmusic::on_addMusic_clicked()
     } else {
         QMessageBox::information(this,"提示","添加成功！请点击刷新列表");
     }
+    clipboard->setText(anti_Clipboard);
 }
 
 
@@ -339,4 +360,56 @@ void SUmusic::on_del_music_clicked()
         m_itemList.append(item);
     }
 }
+
+void SUmusic::paintEvent(QPaintEvent *event)
+{
+    QStyleOption opt;
+    opt.initFrom(this);
+    QPainter painter(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &painter, this);
+}
+
+
+void SUmusic::on_closeWindow_clicked()
+{
+    auto choose = QMessageBox::question(this,"SU云音乐","确认退出？",QMessageBox::Yes,QMessageBox::No);
+    if(choose == QMessageBox::Yes){
+        QApplication::exit();
+    }
+}
+
+
+void SUmusic::on_minWindow_clicked()
+{
+    this->showMinimized();
+}
+
+void SUmusic::mousePressEvent(QMouseEvent *event)
+{
+    // 检查鼠标是否按下在标题栏区域
+    if (event->button() == Qt::LeftButton && titleLabel->geometry().contains(event->pos())) {
+        isDragging = true; // 开始拖动
+        dragStartPosition = event->globalPosition().toPoint() - frameGeometry().topLeft();
+        event->accept(); // 接受事件
+    }
+}
+
+void SUmusic::mouseMoveEvent(QMouseEvent *event)
+{
+    if (isDragging && (event->buttons() & Qt::LeftButton)) {
+        move(event->globalPosition().toPoint() - dragStartPosition);
+        event->accept(); // 接受事件
+    }
+}
+
+void SUmusic::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        isDragging = false; // 停止拖动
+        event->accept(); // 接受事件
+    }
+}
+
+
+
 

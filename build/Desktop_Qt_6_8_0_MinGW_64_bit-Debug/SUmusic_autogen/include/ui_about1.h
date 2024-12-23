@@ -37,18 +37,22 @@ public:
         label->setObjectName("label");
         label->setGeometry(QRect(10, 0, 121, 41));
         QFont font;
+        font.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
         font.setPointSize(20);
+        font.setBold(true);
         label->setFont(font);
         label_2 = new QLabel(About1);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(10, 50, 331, 31));
         QFont font1;
+        font1.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
         font1.setPointSize(12);
         label_2->setFont(font1);
         label_3 = new QLabel(About1);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(10, 80, 101, 21));
         QFont font2;
+        font2.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
         font2.setPointSize(10);
         label_3->setFont(font2);
         label_4 = new QLabel(About1);
@@ -65,7 +69,7 @@ public:
     {
         About1->setWindowTitle(QCoreApplication::translate("About1", "\345\205\263\344\272\216", nullptr));
         label->setText(QCoreApplication::translate("About1", "\345\205\263\344\272\216\346\210\221\344\273\254", nullptr));
-        label_2->setText(QCoreApplication::translate("About1", "Version: SUCloudMusic Beta 0.1.7(fixed)", nullptr));
+        label_2->setText(QCoreApplication::translate("About1", "Version: SUCloudMusic Beta 0.2.1", nullptr));
         label_3->setText(QCoreApplication::translate("About1", "Dev: SUX1NG", nullptr));
         label_4->setText(QCoreApplication::translate("About1", "Supporter: DNF1sreal,Chatgpt", nullptr));
     } // retranslateUi
