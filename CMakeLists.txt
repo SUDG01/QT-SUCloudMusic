@@ -16,7 +16,7 @@ set(PROJECT_SOURCES
         main.cpp
         SUmusic.cpp
         SUmusic.h
-        SUmusic.ui
+        SUmusic.ui  
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

@@ -21,6 +21,8 @@
 #include <QPainter>
 #include <QStyleOption>
 #include <QMouseEvent>
+#include <QRandomGenerator>
+
 
 
 
@@ -54,6 +56,11 @@ SUmusic::SUmusic(QWidget *parent)
     ui->setupUi(this);
 
 
+    ui->songMode->addItem("列表循环");
+    ui->songMode->addItem("单曲循环(beta)");
+    ui->songMode->addItem("随机播放(beta)");
+
+
     ui->Musiclist->setModel(m_Listmodel);
     setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowFlags(Qt::FramelessWindowHint);
@@ -61,7 +68,6 @@ SUmusic::SUmusic(QWidget *parent)
     titleLabel = ui->headBar;
 
     m_mediaPlayer->setAudioOutput(m_audioOutput);
-    connect(ui->addMusic, &QPushButton::clicked, this, &SUmusic::on_addMusic_clicked);
     connect(m_mediaPlayer, &QMediaPlayer::metaDataChanged, this, &SUmusic::updateCoverArt);
     connect(m_timer, &QTimer::timeout, this, &SUmusic::onTimerTimeout);
     m_timer->start(1000);
@@ -93,8 +99,24 @@ SUmusic::SUmusic(QWidget *parent)
     connect(ui->musicslider, &QSlider::sliderMoved, this, &SUmusic::on_musicslider_sliderMoved);
 
     connect(m_mediaPlayer, &QMediaPlayer::mediaStatusChanged, this, [this](QMediaPlayer::MediaStatus status) {
-        if (status == QMediaPlayer::EndOfMedia) {
-            on_music_next_clicked();
+        int ListViewNums = m_itemList.count();
+        auto nowIndex = ui->songMode->currentIndex();
+        int randomIndex = QRandomGenerator::global()->bounded(ListViewNums);
+        if(nowIndex==0){
+            if (status == QMediaPlayer::EndOfMedia) {
+                on_music_next_clicked();
+            }
+        }
+        else if(nowIndex==1){
+            if(status == QMediaPlayer::EndOfMedia){
+                on_music_start_clicked();
+            }
+        }
+        else if(nowIndex==2){
+            qDebug() << "随机数为" << randomIndex;
+            if(status == QMediaPlayer::EndOfMedia){
+                SUmusic::playMusicAtIndex(randomIndex);
+            }
         }
     });
 
@@ -228,10 +250,7 @@ void SUmusic::on_about_clicked()
 }
 
 
-void SUmusic::on_volum_slide_sliderMoved(int position)
-{
 
-}
 
 
 void SUmusic::on_music_next_clicked()
@@ -257,7 +276,6 @@ void SUmusic::playMusicAtIndex(int index)
     m_mediaPlayer->play();
 
     m_currentIndex = index;
-    qDebug() << "正在播放：" << item->text();
     ui->Musiclist->setCurrentIndex(m_Listmodel->index(index, 0));
 }
 
@@ -310,12 +328,15 @@ void SUmusic::on_addMusic_clicked()
     QString anti_Clipboard = clipboard->text();
     clipboard->setText(text);
     QProcess *process = new QProcess(this);
+
     process->start(exePath);
     if (!process->waitForStarted()) {
-        delete process; // 释放进程对象
-    } else {
-        QMessageBox::information(this,"提示","添加成功！请点击刷新列表");
+        delete process;
+        QMessageBox::critical(this,"Error","启动下载进程出错");
+    }else{
+        QMessageBox::information(this,"提示","添加成功，请点击刷新以更新列表");
     }
+    connect(process, &QProcess::finished, process, &QObject::deleteLater);
     clipboard->setText(anti_Clipboard);
 }
 
@@ -332,34 +353,46 @@ void SUmusic::onTimerTimeout()
 void SUmusic::on_del_music_clicked()
 {
     QModelIndexList selectIndexes = ui->Musiclist->selectionModel()->selectedIndexes();
-    auto selectedItem = selectIndexes.first();
-    auto url1 = m_Listmodel->item(selectedItem.row())->data(Qt::UserRole + 1).toUrl();
-    QString url2 = url1.toString();
-
-    if(QFile::exists(url2)){
-        QFile::remove(url2);
-        QMessageBox::information(this,"提示","音乐删除成功");
+    if(selectIndexes.isEmpty()){
+        QMessageBox::information(this,"提示","请选中要删除的音乐");
+        return;
     }
     else{
-        QMessageBox::information(this,"错误","删除失败，请确认文件是否存在");
-    }
-    m_Listmodel->clear();
-    m_itemList.clear();
-    auto path = "Music";
-    QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
-    while(it.hasNext()){
-        auto info = it.nextFileInfo();
-        QString fullName = info.fileName();
+        auto selectedItem = selectIndexes.first();
+        auto url1 = m_Listmodel->item(selectedItem.row())->data(Qt::UserRole + 1).toUrl();
+        QString url2 = url1.toString();
+        if(QFile::exists(url2)){
+            QFile::remove(url2);
+            if(QFile::exists(url2)){
+                QMessageBox::warning(this,"错误","音乐删除失败,请切换歌曲释放占用后再进行删除");
+            }
+            else{
+                QMessageBox::information(this,"提示","音乐删除成功");
+            }
+        }
+        else{
+            QMessageBox::warning(this,"错误","删除失败，请确认文件是否存在");
+        }
+        m_Listmodel->clear();
+        m_itemList.clear();
+        auto path = "Music";
+        QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
+        while(it.hasNext()){
+            auto info = it.nextFileInfo();
+            QString fullName = info.fileName();
 
-        int lastDotIndex = fullName.lastIndexOf('.');
-        QString musicName = (lastDotIndex != -1) ? fullName.left(lastDotIndex) : fullName;
-        auto item = new QStandardItem(musicName);
-        item->setData(info.canonicalFilePath());   //路径
+            int lastDotIndex = fullName.lastIndexOf('.');
+            QString musicName = (lastDotIndex != -1) ? fullName.left(lastDotIndex) : fullName;
+            auto item = new QStandardItem(musicName);
+            item->setData(info.canonicalFilePath());   //路径
 
-        m_Listmodel->appendRow(item);
-        m_itemList.append(item);
+            m_Listmodel->appendRow(item);
+            m_itemList.append(item);
+        }
     }
-}
+    }
+
+
 
 void SUmusic::paintEvent(QPaintEvent *event)
 {
@@ -412,4 +445,13 @@ void SUmusic::mouseReleaseEvent(QMouseEvent *event)
 
 
 
+
+
+void SUmusic::on_pushButton_clicked()
+{
+    ui->now_long->setText("00:00:00");
+    ui->all_long->setText("00:00:00");
+    ui->musicslider->setValue(0);
+    sender()->deleteLater();
+}
 

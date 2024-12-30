@@ -58,8 +58,6 @@ private slots:
 
     void on_about_clicked();
 
-    void on_volum_slide_sliderMoved(int position);
-
     void on_music_next_clicked();
 
     void on_music_previews_clicked();
@@ -81,6 +79,8 @@ private slots:
     void mouseReleaseEvent(QMouseEvent *event);
 
 
+
+    void on_pushButton_clicked();
 
 private:
     Ui::SUmusic *ui;

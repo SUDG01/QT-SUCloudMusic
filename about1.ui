@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>About1</class>
  <widget class="QWidget" name="About1">
+  <property name="enabled">
+   <bool>false</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -10,12 +13,18 @@
     <height>163</height>
    </rect>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>339</width>
+    <height>163</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>关于</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Icon.qrc">
-    <normaloff>:/icon/4SUmusic/mdi_about.png</normaloff>:/icon/4SUmusic/mdi_about.png</iconset>
+    <normaloff>:/icon/4SUmusic/about.png</normaloff>:/icon/4SUmusic/about.png</iconset>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -53,7 +62,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Version: SUCloudMusic Beta 0.2.1</string>
+    <string>Version: SUCloudMusic Beta 0.3.1</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">

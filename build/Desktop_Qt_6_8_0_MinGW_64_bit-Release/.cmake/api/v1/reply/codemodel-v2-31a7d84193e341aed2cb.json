@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-fab4f99f898e70e7aab4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "SUmusic",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "SUmusic::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SUmusic-Release-22018960a5975c7ce56e.json",
+					"name" : "SUmusic",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SUmusic_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SUmusic_autogen-Release-0a893beb328fac7e4c23.json",
+					"name" : "SUmusic_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "SUmusic_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-SUmusic_autogen_timestamp_deps-Release-6d2c4e24a5dc973d2f58.json",
+					"name" : "SUmusic_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "E:/QT-SUcloudmusic/SUmusic/build/Desktop_Qt_6_8_0_MinGW_64_bit-Release",
+		"source" : "E:/QT-SUcloudmusic/SUmusic"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

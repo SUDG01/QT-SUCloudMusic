@@ -29,9 +29,11 @@ public:
     {
         if (About1->objectName().isEmpty())
             About1->setObjectName("About1");
+        About1->setEnabled(false);
         About1->resize(339, 163);
+        About1->setMaximumSize(QSize(339, 163));
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icon/4SUmusic/mdi_about.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon.addFile(QString::fromUtf8(":/icon/4SUmusic/about.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         About1->setWindowIcon(icon);
         label = new QLabel(About1);
         label->setObjectName("label");
@@ -69,7 +71,7 @@ public:
     {
         About1->setWindowTitle(QCoreApplication::translate("About1", "\345\205\263\344\272\216", nullptr));
         label->setText(QCoreApplication::translate("About1", "\345\205\263\344\272\216\346\210\221\344\273\254", nullptr));
-        label_2->setText(QCoreApplication::translate("About1", "Version: SUCloudMusic Beta 0.2.1", nullptr));
+        label_2->setText(QCoreApplication::translate("About1", "Version: SUCloudMusic Beta 0.3.1", nullptr));
         label_3->setText(QCoreApplication::translate("About1", "Dev: SUX1NG", nullptr));
         label_4->setText(QCoreApplication::translate("About1", "Supporter: DNF1sreal,Chatgpt", nullptr));
     } // retranslateUi

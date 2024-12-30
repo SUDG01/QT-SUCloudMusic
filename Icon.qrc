@@ -11,5 +11,7 @@
         <file>../../icon/4SUmusic/mdi-light_file.png</file>
         <file>../../icon/4SUmusic/material-symbols_delete-outline-rounded.png</file>
         <file>../../icon/4SUmusic/material-symbols_refresh-rounded.png</file>
+        <file>../../icon/4SUmusic/about.png</file>
+        <file>../../icon/4SUmusic/rainy_headicon.png</file>
     </qresource>
 </RCC>

@@ -44,7 +44,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="Icon.qrc">
-    <normaloff>:/icon/4SUmusic/arcticons_wynk-music.png</normaloff>:/icon/4SUmusic/arcticons_wynk-music.png</iconset>
+    <normaloff>:/icon/4SUmusic/rainy_headicon.png</normaloff>:/icon/4SUmusic/rainy_headicon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QPushButton
@@ -68,8 +68,7 @@ QMainWindow{         /*类名*/
 
 QPushButton#closeWindow:hover{
 	background-color:red;
-}
-</string>
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QListView" name="Musiclist">
@@ -242,6 +241,62 @@ QPushButton#closeWindow:hover{
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:horizontal {
+    border: 1px solid #e9dff0; /* 更亮的浅紫边框 */
+    background: #f8f6fc; /* 更亮的浅灰紫色槽道 */
+    height: 8px; /* 槽道高度 */
+    border-radius: 4px; /* 圆角槽道 */
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(
+        spread:pad,
+        x1:0, y1:0, x2:1, y2:0,
+        stop:0 #f0c8dd, /* 更亮的浅粉紫 */
+        stop:1 #e6b2d1  /* 更亮的紫粉色 */
+    ); /* 已播放部分渐变 */
+    border: 1px solid #e6b2d1; /* 较亮的渐变边框 */
+    height: 8px;
+    border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+    background: #fefcff; /* 更亮的未播放部分浅灰粉色 */
+    border: 1px solid #e9dff0; /* 更亮的浅紫边框 */
+    height: 8px;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        fx:0.5, fy:0.5,
+        stop:0 #fff, /* 白色中心 */
+        stop:1 #f6c4d3 /* 更亮的浅粉外圈 */
+    ); /* 滑块渐变颜色 */
+    border: 1px solid #f0a3b8; /* 更亮的粉色边框 */
+    width: 14px; /* 滑块宽度 */
+    height: 14px; /* 滑块高度 */
+    margin: -3px 0; /* 调整垂直位置 */
+    border-radius: 7px; /* 圆形滑块 */
+}
+
+QSlider::handle:horizontal:hover {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        fx:0.5, fy:0.5,
+        stop:0 #fff8fa, /* 悬浮时更亮的中心 */
+        stop:1 #f89ab6  /* 更亮的外圈亮粉色 */
+    ); /* 鼠标悬浮滑块渐变 */
+    border: 1px solid #f48ca2; /* 边框更亮 */
+}
+
+QSlider::groove:horizontal:hover {
+    background: #f9f3f9; /* 鼠标悬浮时更亮的浅紫色 */
+}
+</string>
+    </property>
     <property name="maximum">
      <number>100</number>
     </property>
@@ -300,8 +355,9 @@ QPushButton#closeWindow:hover{
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
-      <bold>true</bold>
+      <family>微软雅黑</family>
+      <pointsize>14</pointsize>
+      <bold>false</bold>
      </font>
     </property>
     <property name="undoRedoEnabled">
@@ -397,6 +453,62 @@ QPushButton#closeWindow:hover{
       <height>71</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QSlider::groove:vertical {
+    border: 1px solid #e9dff0; /* 边框浅紫色 */
+    background: #f8f6fc; /* 浅灰紫色槽道 */
+    width: 8px; /* 槽道宽度 */
+    border-radius: 4px; /* 圆角槽道 */
+}
+
+QSlider::sub-page:vertical {
+    background: #fefcff; /* 已调整部分浅灰粉色 */
+    border: 1px solid #e9dff0; /* 边框浅紫色 */
+    width: 8px;
+    border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+    background: qlineargradient(
+        spread:pad,
+        x1:0, y1:0, x2:0, y2:1,
+        stop:0 #f0c8dd, /* 更亮的浅粉紫 */
+        stop:1 #e6b2d1  /* 更亮的紫粉色 */
+    ); /* 未调整部分渐变 */
+    border: 1px solid #e6b2d1; /* 渐变边框 */
+    width: 8px;
+    border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        fx:0.5, fy:0.5,
+        stop:0 #fff, /* 白色中心 */
+        stop:1 #f6c4d3 /* 更亮的浅粉外圈 */
+    ); /* 滑块渐变颜色 */
+    border: 1px solid #f0a3b8; /* 边框浅粉色 */
+    width: 14px; /* 滑块宽度 */
+    height: 14px; /* 滑块高度 */
+    margin: 0 -3px; /* 调整水平位置 */
+    border-radius: 7px; /* 圆形滑块 */
+}
+
+QSlider::handle:vertical:hover {
+    background: qradialgradient(
+        cx:0.5, cy:0.5, radius:0.5,
+        fx:0.5, fy:0.5,
+        stop:0 #fff8fa, /* 悬浮时更亮的中心 */
+        stop:1 #f89ab6  /* 更亮的外圈亮粉色 */
+    ); /* 鼠标悬浮滑块渐变 */
+    border: 1px solid #f48ca2; /* 边框更亮 */
+}
+
+QSlider::groove:vertical:hover {
+    background: #f9f3f9; /* 鼠标悬浮时更亮的浅紫色 */
+}
+</string>
+    </property>
     <property name="orientation">
      <enum>Qt::Orientation::Vertical</enum>
     </property>
@@ -479,6 +591,44 @@ border-style:solid</string>
     </property>
     <property name="text">
      <string>SU云音乐</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="songMode">
+    <property name="geometry">
+     <rect>
+      <x>1040</x>
+      <y>560</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="currentText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>130</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>占用清除</string>
     </property>
    </widget>
   </widget>

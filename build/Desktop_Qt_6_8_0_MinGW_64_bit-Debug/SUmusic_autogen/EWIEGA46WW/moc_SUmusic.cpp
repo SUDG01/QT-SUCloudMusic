@@ -53,7 +53,6 @@ constexpr auto qt_meta_stringdata_CLASSSUmusicENDCLASS = QtMocHelpers::stringDat
     "position",
     "on_musicslider_valueChanged",
     "on_about_clicked",
-    "on_volum_slide_sliderMoved",
     "on_music_next_clicked",
     "on_music_previews_clicked",
     "on_addMusic_clicked",
@@ -64,7 +63,8 @@ constexpr auto qt_meta_stringdata_CLASSSUmusicENDCLASS = QtMocHelpers::stringDat
     "mousePressEvent",
     "QMouseEvent*",
     "mouseMoveEvent",
-    "mouseReleaseEvent"
+    "mouseReleaseEvent",
+    "on_pushButton_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -94,17 +94,17 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSUmusicENDCLASS[] = {
       13,    1,  146,    2, 0x08,   10 /* Private */,
       15,    1,  149,    2, 0x08,   12 /* Private */,
       16,    0,  152,    2, 0x08,   14 /* Private */,
-      17,    1,  153,    2, 0x08,   15 /* Private */,
-      18,    0,  156,    2, 0x08,   17 /* Private */,
-      19,    0,  157,    2, 0x08,   18 /* Private */,
-      20,    0,  158,    2, 0x08,   19 /* Private */,
-      21,    0,  159,    2, 0x08,   20 /* Private */,
-      22,    0,  160,    2, 0x08,   21 /* Private */,
-      23,    0,  161,    2, 0x08,   22 /* Private */,
-      24,    0,  162,    2, 0x08,   23 /* Private */,
-      25,    1,  163,    2, 0x08,   24 /* Private */,
+      17,    0,  153,    2, 0x08,   15 /* Private */,
+      18,    0,  154,    2, 0x08,   16 /* Private */,
+      19,    0,  155,    2, 0x08,   17 /* Private */,
+      20,    0,  156,    2, 0x08,   18 /* Private */,
+      21,    0,  157,    2, 0x08,   19 /* Private */,
+      22,    0,  158,    2, 0x08,   20 /* Private */,
+      23,    0,  159,    2, 0x08,   21 /* Private */,
+      24,    1,  160,    2, 0x08,   22 /* Private */,
+      26,    1,  163,    2, 0x08,   24 /* Private */,
       27,    1,  166,    2, 0x08,   26 /* Private */,
-      28,    1,  169,    2, 0x08,   28 /* Private */,
+      28,    0,  169,    2, 0x08,   28 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -116,7 +116,6 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSUmusicENDCLASS[] = {
     QMetaType::Void, QMetaType::Int,   14,
     QMetaType::Void, QMetaType::Int,   12,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   14,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -124,9 +123,10 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSSUmusicENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 26,    5,
-    QMetaType::Void, 0x80000000 | 26,    5,
-    QMetaType::Void, 0x80000000 | 26,    5,
+    QMetaType::Void, 0x80000000 | 25,    5,
+    QMetaType::Void, 0x80000000 | 25,    5,
+    QMetaType::Void, 0x80000000 | 25,    5,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -163,9 +163,6 @@ Q_CONSTINIT const QMetaObject SUmusic::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_about_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_volum_slide_sliderMoved'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_music_next_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_music_previews_clicked'
@@ -188,7 +185,9 @@ Q_CONSTINIT const QMetaObject SUmusic::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
         // method 'mouseReleaseEvent'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>
+        QtPrivate::TypeAndForceComplete<QMouseEvent *, std::false_type>,
+        // method 'on_pushButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
 } };
@@ -208,17 +207,17 @@ void SUmusic::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 6: _t->on_musicslider_sliderMoved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 7: _t->on_musicslider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 8: _t->on_about_clicked(); break;
-        case 9: _t->on_volum_slide_sliderMoved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 10: _t->on_music_next_clicked(); break;
-        case 11: _t->on_music_previews_clicked(); break;
-        case 12: _t->on_addMusic_clicked(); break;
-        case 13: _t->on_open_file_clicked(); break;
-        case 14: _t->on_del_music_clicked(); break;
-        case 15: _t->on_closeWindow_clicked(); break;
-        case 16: _t->on_minWindow_clicked(); break;
-        case 17: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 18: _t->mouseMoveEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
-        case 19: _t->mouseReleaseEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 9: _t->on_music_next_clicked(); break;
+        case 10: _t->on_music_previews_clicked(); break;
+        case 11: _t->on_addMusic_clicked(); break;
+        case 12: _t->on_open_file_clicked(); break;
+        case 13: _t->on_del_music_clicked(); break;
+        case 14: _t->on_closeWindow_clicked(); break;
+        case 15: _t->on_minWindow_clicked(); break;
+        case 16: _t->mousePressEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 17: _t->mouseMoveEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 18: _t->mouseReleaseEvent((*reinterpret_cast< std::add_pointer_t<QMouseEvent*>>(_a[1]))); break;
+        case 19: _t->on_pushButton_clicked(); break;
         default: ;
         }
     }

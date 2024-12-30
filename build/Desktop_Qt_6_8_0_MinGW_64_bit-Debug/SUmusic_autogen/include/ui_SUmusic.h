@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
@@ -47,6 +48,8 @@ public:
     QPushButton *closeWindow;
     QPushButton *minWindow;
     QLabel *Introduction;
+    QComboBox *songMode;
+    QPushButton *pushButton;
 
     void setupUi(QMainWindow *SUmusic)
     {
@@ -68,7 +71,7 @@ public:
         font.setKerning(true);
         SUmusic->setFont(font);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/icon/4SUmusic/arcticons_wynk-music.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
+        icon.addFile(QString::fromUtf8(":/icon/4SUmusic/rainy_headicon.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
         SUmusic->setWindowIcon(icon);
         SUmusic->setStyleSheet(QString::fromUtf8("QPushButton\n"
 "{\n"
@@ -91,8 +94,7 @@ public:
 "\n"
 "QPushButton#closeWindow:hover{\n"
 "	background-color:red;\n"
-"}\n"
-""));
+"}"));
         centralwidget = new QWidget(SUmusic);
         centralwidget->setObjectName("centralwidget");
         Musiclist = new QListView(centralwidget);
@@ -148,6 +150,63 @@ public:
         musicslider = new QSlider(centralwidget);
         musicslider->setObjectName("musicslider");
         musicslider->setGeometry(QRect(420, 510, 791, 41));
+        musicslider->setStyleSheet(QString::fromUtf8("QSlider::groove:horizontal {\n"
+"    border: 1px solid #e9dff0; /* \346\233\264\344\272\256\347\232\204\346\265\205\347\264\253\350\276\271\346\241\206 */\n"
+"    background: #f8f6fc; /* \346\233\264\344\272\256\347\232\204\346\265\205\347\201\260\347\264\253\350\211\262\346\247\275\351\201\223 */\n"
+"    height: 8px; /* \346\247\275\351\201\223\351\253\230\345\272\246 */\n"
+"    border-radius: 4px; /* \345\234\206\350\247\222\346\247\275\351\201\223 */\n"
+"}\n"
+"\n"
+"QSlider::sub-page:horizontal {\n"
+"    background: qlineargradient(\n"
+"        spread:pad,\n"
+"        x1:0, y1:0, x2:1, y2:0,\n"
+"        stop:0 #f0c8dd, /* \346\233\264\344\272\256\347\232\204\346\265\205\347\262\211\347\264\253 */\n"
+"        stop:1 #e6b2d1  /* \346\233\264\344\272\256\347\232\204\347\264\253\347\262\211\350\211\262 */\n"
+"    ); /* \345\267\262\346\222\255\346\224\276\351\203\250\345\210\206\346\270\220\345\217\230 */\n"
+"    border: 1px solid #e6b2d1; /* \350\276\203\344\272\256\347\232\204\346\270\220\345\217\230\350\276\271"
+                        "\346\241\206 */\n"
+"    height: 8px;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::add-page:horizontal {\n"
+"    background: #fefcff; /* \346\233\264\344\272\256\347\232\204\346\234\252\346\222\255\346\224\276\351\203\250\345\210\206\346\265\205\347\201\260\347\262\211\350\211\262 */\n"
+"    border: 1px solid #e9dff0; /* \346\233\264\344\272\256\347\232\204\346\265\205\347\264\253\350\276\271\346\241\206 */\n"
+"    height: 8px;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal {\n"
+"    background: qradialgradient(\n"
+"        cx:0.5, cy:0.5, radius:0.5,\n"
+"        fx:0.5, fy:0.5,\n"
+"        stop:0 #fff, /* \347\231\275\350\211\262\344\270\255\345\277\203 */\n"
+"        stop:1 #f6c4d3 /* \346\233\264\344\272\256\347\232\204\346\265\205\347\262\211\345\244\226\345\234\210 */\n"
+"    ); /* \346\273\221\345\235\227\346\270\220\345\217\230\351\242\234\350\211\262 */\n"
+"    border: 1px solid #f0a3b8; /* \346\233\264\344\272\256\347\232\204\347\262\211\350\211\262\350\276\271\346\241\206"
+                        " */\n"
+"    width: 14px; /* \346\273\221\345\235\227\345\256\275\345\272\246 */\n"
+"    height: 14px; /* \346\273\221\345\235\227\351\253\230\345\272\246 */\n"
+"    margin: -3px 0; /* \350\260\203\346\225\264\345\236\202\347\233\264\344\275\215\347\275\256 */\n"
+"    border-radius: 7px; /* \345\234\206\345\275\242\346\273\221\345\235\227 */\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal:hover {\n"
+"    background: qradialgradient(\n"
+"        cx:0.5, cy:0.5, radius:0.5,\n"
+"        fx:0.5, fy:0.5,\n"
+"        stop:0 #fff8fa, /* \346\202\254\346\265\256\346\227\266\346\233\264\344\272\256\347\232\204\344\270\255\345\277\203 */\n"
+"        stop:1 #f89ab6  /* \346\233\264\344\272\256\347\232\204\345\244\226\345\234\210\344\272\256\347\262\211\350\211\262 */\n"
+"    ); /* \351\274\240\346\240\207\346\202\254\346\265\256\346\273\221\345\235\227\346\270\220\345\217\230 */\n"
+"    border: 1px solid #f48ca2; /* \350\276\271\346\241\206\346\233\264\344\272\256 */\n"
+"}\n"
+"\n"
+"QSlider::groove:horizontal:hover {\n"
+"    bac"
+                        "kground: #f9f3f9; /* \351\274\240\346\240\207\346\202\254\346\265\256\346\227\266\346\233\264\344\272\256\347\232\204\346\265\205\347\264\253\350\211\262 */\n"
+"}\n"
+""));
         musicslider->setMaximum(100);
         musicslider->setOrientation(Qt::Orientation::Horizontal);
         about = new QPushButton(centralwidget);
@@ -164,8 +223,9 @@ public:
         usrInput->setObjectName("usrInput");
         usrInput->setGeometry(QRect(380, 40, 711, 41));
         QFont font3;
-        font3.setPointSize(10);
-        font3.setBold(true);
+        font3.setFamilies({QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221")});
+        font3.setPointSize(14);
+        font3.setBold(false);
         usrInput->setFont(font3);
         usrInput->setUndoRedoEnabled(true);
         usrInput->setLineWrapMode(QTextEdit::LineWrapMode::WidgetWidth);
@@ -198,6 +258,62 @@ public:
         volum_slide = new QSlider(centralwidget);
         volum_slide->setObjectName("volum_slide");
         volum_slide->setGeometry(QRect(1170, 550, 20, 71));
+        volum_slide->setStyleSheet(QString::fromUtf8("QSlider::groove:vertical {\n"
+"    border: 1px solid #e9dff0; /* \350\276\271\346\241\206\346\265\205\347\264\253\350\211\262 */\n"
+"    background: #f8f6fc; /* \346\265\205\347\201\260\347\264\253\350\211\262\346\247\275\351\201\223 */\n"
+"    width: 8px; /* \346\247\275\351\201\223\345\256\275\345\272\246 */\n"
+"    border-radius: 4px; /* \345\234\206\350\247\222\346\247\275\351\201\223 */\n"
+"}\n"
+"\n"
+"QSlider::sub-page:vertical {\n"
+"    background: #fefcff; /* \345\267\262\350\260\203\346\225\264\351\203\250\345\210\206\346\265\205\347\201\260\347\262\211\350\211\262 */\n"
+"    border: 1px solid #e9dff0; /* \350\276\271\346\241\206\346\265\205\347\264\253\350\211\262 */\n"
+"    width: 8px;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::add-page:vertical {\n"
+"    background: qlineargradient(\n"
+"        spread:pad,\n"
+"        x1:0, y1:0, x2:0, y2:1,\n"
+"        stop:0 #f0c8dd, /* \346\233\264\344\272\256\347\232\204\346\265\205\347\262\211\347\264\253 */\n"
+"        stop:1 #e6b2d1  /* \346\233\264\344"
+                        "\272\256\347\232\204\347\264\253\347\262\211\350\211\262 */\n"
+"    ); /* \346\234\252\350\260\203\346\225\264\351\203\250\345\210\206\346\270\220\345\217\230 */\n"
+"    border: 1px solid #e6b2d1; /* \346\270\220\345\217\230\350\276\271\346\241\206 */\n"
+"    width: 8px;\n"
+"    border-radius: 4px;\n"
+"}\n"
+"\n"
+"QSlider::handle:vertical {\n"
+"    background: qradialgradient(\n"
+"        cx:0.5, cy:0.5, radius:0.5,\n"
+"        fx:0.5, fy:0.5,\n"
+"        stop:0 #fff, /* \347\231\275\350\211\262\344\270\255\345\277\203 */\n"
+"        stop:1 #f6c4d3 /* \346\233\264\344\272\256\347\232\204\346\265\205\347\262\211\345\244\226\345\234\210 */\n"
+"    ); /* \346\273\221\345\235\227\346\270\220\345\217\230\351\242\234\350\211\262 */\n"
+"    border: 1px solid #f0a3b8; /* \350\276\271\346\241\206\346\265\205\347\262\211\350\211\262 */\n"
+"    width: 14px; /* \346\273\221\345\235\227\345\256\275\345\272\246 */\n"
+"    height: 14px; /* \346\273\221\345\235\227\351\253\230\345\272\246 */\n"
+"    margin: 0 -3px; /* \350\260"
+                        "\203\346\225\264\346\260\264\345\271\263\344\275\215\347\275\256 */\n"
+"    border-radius: 7px; /* \345\234\206\345\275\242\346\273\221\345\235\227 */\n"
+"}\n"
+"\n"
+"QSlider::handle:vertical:hover {\n"
+"    background: qradialgradient(\n"
+"        cx:0.5, cy:0.5, radius:0.5,\n"
+"        fx:0.5, fy:0.5,\n"
+"        stop:0 #fff8fa, /* \346\202\254\346\265\256\346\227\266\346\233\264\344\272\256\347\232\204\344\270\255\345\277\203 */\n"
+"        stop:1 #f89ab6  /* \346\233\264\344\272\256\347\232\204\345\244\226\345\234\210\344\272\256\347\262\211\350\211\262 */\n"
+"    ); /* \351\274\240\346\240\207\346\202\254\346\265\256\346\273\221\345\235\227\346\270\220\345\217\230 */\n"
+"    border: 1px solid #f48ca2; /* \350\276\271\346\241\206\346\233\264\344\272\256 */\n"
+"}\n"
+"\n"
+"QSlider::groove:vertical:hover {\n"
+"    background: #f9f3f9; /* \351\274\240\346\240\207\346\202\254\346\265\256\346\227\266\346\233\264\344\272\256\347\232\204\346\265\205\347\264\253\350\211\262 */\n"
+"}\n"
+""));
         volum_slide->setOrientation(Qt::Orientation::Vertical);
         headBar = new QLabel(centralwidget);
         headBar->setObjectName("headBar");
@@ -229,6 +345,14 @@ public:
         font5.setBold(true);
         font5.setItalic(false);
         Introduction->setFont(font5);
+        songMode = new QComboBox(centralwidget);
+        songMode->setObjectName("songMode");
+        songMode->setGeometry(QRect(1040, 560, 111, 31));
+        songMode->setFont(font4);
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName("pushButton");
+        pushButton->setGeometry(QRect(70, 130, 101, 31));
+        pushButton->setFont(font1);
         SUmusic->setCentralWidget(centralwidget);
 
         retranslateUi(SUmusic);
@@ -255,6 +379,8 @@ public:
         closeWindow->setText(QString());
         minWindow->setText(QString());
         Introduction->setText(QCoreApplication::translate("SUmusic", "SU\344\272\221\351\237\263\344\271\220", nullptr));
+        songMode->setCurrentText(QString());
+        pushButton->setText(QCoreApplication::translate("SUmusic", "\345\215\240\347\224\250\346\270\205\351\231\244", nullptr));
     } // retranslateUi
 
 };
