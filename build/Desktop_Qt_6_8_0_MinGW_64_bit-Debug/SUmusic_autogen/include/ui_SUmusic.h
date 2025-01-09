@@ -215,7 +215,7 @@ public:
         about->setFont(font2);
         MuCover = new QLabel(centralwidget);
         MuCover->setObjectName("MuCover");
-        MuCover->setGeometry(QRect(640, 120, 300, 300));
+        MuCover->setGeometry(QRect(600, 90, 350, 350));
         MuCover->setStyleSheet(QString::fromUtf8(""));
         MuCover->setPixmap(QPixmap(QString::fromUtf8(":/icon/4SUmusic/default_cover.png")));
         MuCover->setScaledContents(true);

@@ -57,8 +57,8 @@ SUmusic::SUmusic(QWidget *parent)
 
 
     ui->songMode->addItem("列表循环");
-    ui->songMode->addItem("单曲循环(beta)");
-    ui->songMode->addItem("随机播放(beta)");
+    ui->songMode->addItem("单曲循环");
+    ui->songMode->addItem("随机播放");
 
 
     ui->Musiclist->setModel(m_Listmodel);
@@ -113,16 +113,15 @@ SUmusic::SUmusic(QWidget *parent)
             }
         }
         else if(nowIndex==2){
-            qDebug() << "随机数为" << randomIndex;
             if(status == QMediaPlayer::EndOfMedia){
-                SUmusic::playMusicAtIndex(randomIndex);
+                on_music_next_clicked();
             }
         }
     });
 
 
     auto path1 = "Music";
-    QDirIterator it(path1,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
+    QDirIterator it(path1,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*.aac","*.mp4"});
     while(it.hasNext()){
         auto info = it.nextFileInfo();
         QString fullName = info.fileName();
@@ -150,7 +149,7 @@ void SUmusic::on_reload_clicked()
     m_Listmodel->clear();
     m_itemList.clear();
     auto path = "Music";
-    QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
+    QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*.aac","*.mp4"});
     while(it.hasNext()){
         auto info = it.nextFileInfo();
         QString fullName = info.fileName();
@@ -255,12 +254,26 @@ void SUmusic::on_about_clicked()
 
 void SUmusic::on_music_next_clicked()
 {
-    if (m_itemList.isEmpty()) {
-        return;
+    int ListViewNums = m_itemList.count();
+    auto nowIndex = ui->songMode->currentIndex();
+    int randomIndex = QRandomGenerator::global()->bounded(ListViewNums);
+    if(nowIndex == 0){
+        if (m_itemList.isEmpty()) {
+            return;
+        }
+        int nextIndex = (m_currentIndex + 1) % m_itemList.size();
+        playMusicAtIndex(nextIndex);
     }
-
-    int nextIndex = (m_currentIndex + 1) % m_itemList.size();
-    playMusicAtIndex(nextIndex);
+    else if(nowIndex == 1){
+        if (m_itemList.isEmpty()) {
+            return;
+        }
+        playMusicAtIndex(m_currentIndex);
+    }
+    else{
+        qDebug() << "随机数为" << randomIndex;
+        playMusicAtIndex(randomIndex);
+    }
 }
 
 void SUmusic::playMusicAtIndex(int index)
@@ -283,11 +296,26 @@ void SUmusic::playMusicAtIndex(int index)
 
 void SUmusic::on_music_previews_clicked()
 {
-    if (m_itemList.isEmpty()) {
-        return;
+    int ListViewNums = m_itemList.count();
+    auto nowIndex = ui->songMode->currentIndex();
+    int randomIndex = QRandomGenerator::global()->bounded(ListViewNums);
+    if(nowIndex == 0){
+        if (m_itemList.isEmpty()) {
+            return;
+        }
+        int prevIndex = (m_currentIndex - 1 + m_itemList.size()) % m_itemList.size();
+        playMusicAtIndex(prevIndex);
     }
-    int prevIndex = (m_currentIndex - 1 + m_itemList.size()) % m_itemList.size();
-    playMusicAtIndex(prevIndex);
+    else if(nowIndex == 1){
+        if (m_itemList.isEmpty()) {
+            return;
+        }
+        playMusicAtIndex(m_currentIndex);
+    }
+    else if(nowIndex == 2){
+        qDebug() << "随机数为" << randomIndex;
+        playMusicAtIndex(randomIndex);
+    }
 }
 
 
@@ -306,8 +334,6 @@ void SUmusic::updateCoverArt()
             qDebug() << "Cover image is null.";
         }
     } else {
-        qDebug() << "No cover image found in metadata.";
-        // 设置默认封面
         ui->MuCover->setPixmap(QPixmap(":/icon/4SUmusic/default_cover.png").scaled(ui->MuCover->size(), Qt::KeepAspectRatio));
     }
 }
@@ -376,7 +402,7 @@ void SUmusic::on_del_music_clicked()
         m_Listmodel->clear();
         m_itemList.clear();
         auto path = "Music";
-        QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*aac"});
+        QDirIterator it(path,{"*.mp3","*.wav","*.ogg","*.m4a","*.flac","*.aac","*.mp4"});
         while(it.hasNext()){
             auto info = it.nextFileInfo();
             QString fullName = info.fileName();

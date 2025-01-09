@@ -325,10 +325,10 @@ QSlider::groove:horizontal:hover {
    <widget class="QLabel" name="MuCover">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>120</y>
-      <width>300</width>
-      <height>300</height>
+      <x>600</x>
+      <y>90</y>
+      <width>350</width>
+      <height>350</height>
      </rect>
     </property>
     <property name="styleSheet">
